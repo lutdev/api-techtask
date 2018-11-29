@@ -17,7 +17,6 @@ services:
           - PUID=${WORKSPACE_PUID}
           - PGID=${WORKSPACE_PGID}
           - TZ=${WORKSPACE_TIMEZONE}
-          - NODE_VERSION=${WORKSPACE_NODE_VERSION}
       volumes:
         - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}
       extra_hosts:
