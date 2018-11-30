@@ -23,7 +23,11 @@ $app = new Laravel\Lumen\Application(
     dirname(__DIR__)
 );
 
-$app->withFacades();
+$app->configure('api-servers');
+
+$app->withFacades(true, [
+    \App\Facades\OutsideAPIFacade::class => 'OutsideAPI'
+]);
 
 $app->withEloquent();
 
