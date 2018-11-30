@@ -18,6 +18,17 @@ class CreateTables extends Migration
             $table->string('title')->nullable(false);
         });
 
+        DB::table('sources')->insert([
+            [
+                'id' => 1,
+                'title' => 'affise'
+            ],
+            [
+                'id' => 2,
+                'title' => 'pliri'
+            ]
+        ]);
+
         Schema::create('offers', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('source_id')->nullable(false);
