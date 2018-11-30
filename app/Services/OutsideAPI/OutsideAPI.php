@@ -6,6 +6,7 @@ use App\Exceptions\OutsideAPIException;
 use App\Services\Builders\ApiConfigBuilder;
 use App\Services\OutsideAPI\Servers\ServerAPIContract;
 use DB;
+use Illuminate\Database\QueryException;
 
 class OutsideAPI
 {
@@ -47,7 +48,11 @@ class OutsideAPI
             return $this;
         }
 
-        DB::table('offers')->insert($offers);
+        try{
+            DB::table('offers')->insert($offers);
+        } catch (QueryException $exception){
+            throw new OutsideAPIException($exception->getMessage());
+        }
 
         return $offers;
     }
