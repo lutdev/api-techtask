@@ -8,6 +8,6 @@ else
     composer install;
 fi
 
-php artisan migrate
+php artisan migrate --seed
 
 /bin/bash
