@@ -5,6 +5,7 @@ namespace App\Services\OutsideAPI;
 use App\Exceptions\OutsideAPIException;
 use App\Services\Builders\ApiConfigBuilder;
 use App\Services\OutsideAPI\Servers\ServerAPIContract;
+use DB;
 
 class OutsideAPI
 {
@@ -30,16 +31,24 @@ class OutsideAPI
 
         $apiConfig = new ApiConfigBuilder($this->config[$serverName]);
 
-        $this->handle($apiConfig);
+        return $this->handle($apiConfig);
     }
 
-    protected function handle(ApiConfigBuilder $configBuilder)
+    protected function handle(ApiConfigBuilder $configBuilder): array
     {
         $handlerClass = $configBuilder->handler;
 
         /** @var ServerAPIContract $handler */
         $handler = new $handlerClass;
 
-        dd($handler->offersList());
+        $offers = $handler->offersList();
+
+        if(!$offers){
+            return $this;
+        }
+
+        DB::table('offers')->insert($offers);
+
+        return $offers;
     }
 }

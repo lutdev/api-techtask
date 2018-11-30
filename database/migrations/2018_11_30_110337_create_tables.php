@@ -26,6 +26,7 @@ class CreateTables extends Migration
             $table->string('currency')->nullable(true)->default(null);
             $table->string('advertiser')->nullable(true)->default(null);
             $table->string('os')->nullable(true)->default(null);
+            $table->string('status')->nullable(true)->default(null);
 
             $table->json('payload')->nullable(true)->default(null);
 

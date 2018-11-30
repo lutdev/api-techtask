@@ -64,6 +64,6 @@ class ServerAPI
 
     protected function offersListConfig(): array
     {
-        return $this->config['data']['offers']['endpoints']['list'];
+        return $this->config['data']['offers']['list'];
     }
 }

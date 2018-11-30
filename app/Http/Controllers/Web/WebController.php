@@ -21,6 +21,7 @@ class WebController extends BaseController
 
         return response()->json([
             'success' => true,
+            'offersCount' => count($offers)
         ]);
     }
 }
