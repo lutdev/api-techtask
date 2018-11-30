@@ -25,6 +25,6 @@ cd docker && docker-compose up -d --build
 # Доступные URL
 1. Страницы `http://localhost:8033/affise` и `http://localhost:8033/pliri` выкачивают данные с соответствующих API. Если 
 таблица `offers` пустая в БД, она будет заполнена.
-2. `GET``http://localhost:8033/api/offers` вернёт список все ID офферов. Роут поддерживает выборку по `status`, `country`,
+2. `GET` `http://localhost:8033/api/offers` вернёт список все ID офферов. Роут поддерживает выборку по `status`, `country`,
  `currency`, `advertiser`, `os`. Например, `http://localhost:8033/api/offers?status=active`.
 3. `GET` `http://localhost:8033/api/offers/{OFFER_ID}` вернёт информацию по оферу.
