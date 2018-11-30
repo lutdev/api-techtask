@@ -8,7 +8,6 @@ return [
                 'list' => [
                     'url' => 'http://api.gasmobi.affise.com/3.0/offers',
                     'fields' => [
-                        'id' => 'id',
                         'offer_id' => 'offer_id',
                         'country' => 'countries.0',
                         'currency' => 'payments.0.currency',
@@ -21,13 +20,26 @@ return [
         ]
     ],
     'pliri' => [
-        'handler' => \App\Services\OutsideAPI\Servers\PliriAPI::class,
+        'handler' => \App\Services\OutsideAPI\Servers\Pliri\PliriAPI::class,
         'token' => env('API_PLIRI_TOKEN', null),
         'data' => [
             'offers' => [
                 'list' => [
                     'url' => 'http://demo.api.pliri.net/v1/affiliate-offer/find-all',
-                    'fields' => []
+                    'fields' => [
+                        'offer_id' => 'offer_id',
+                        'status' => 'status',
+                        'os' => 'os',
+                        'country' => 'country',
+                        'currency' => '',
+                        'advertiser' => '',
+                    ]
+                ],
+                'platforms' => [
+                    'url' => 'http://demo.api.pliri.net/v1/affiliate-offer/get-platform'
+                ],
+                'countries' => [
+                    'url' => 'http://demo.api.pliri.net/v1/affiliate-offer/get-targeting'
                 ]
             ]
         ]

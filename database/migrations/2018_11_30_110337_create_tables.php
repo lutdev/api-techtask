@@ -21,7 +21,7 @@ class CreateTables extends Migration
         Schema::create('offers', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('source_id')->nullable(false);
-            $table->string('offer_id')->nullable(false);
+            $table->string('offer_id')->nullable(false)->unique();
             $table->string('country')->nullable(true)->default(null);
             $table->string('currency')->nullable(true)->default(null);
             $table->string('advertiser')->nullable(true)->default(null);
@@ -31,6 +31,8 @@ class CreateTables extends Migration
             $table->json('payload')->nullable(true)->default(null);
 
             $table->foreign('source_id')->references('id')->on('sources');
+
+            $table->index('country');
         });
     }
 

@@ -2,7 +2,7 @@
 
 namespace App\Services\OutsideAPI\Servers\Affise;
 
-use App\Services\OutsideAPI\Servers\ApiOfferBuilder;
+use App\Services\OutsideAPI\Servers\Affise\AffiseOfferBuilder;
 use App\Services\OutsideAPI\Servers\ServerAPI;
 use App\Services\OutsideAPI\Servers\ServerAPIContract;
 
@@ -34,7 +34,7 @@ class AffiseAPI extends ServerAPI  implements ServerAPIContract
             $apiFields = config('api-servers.affise.data.offers.list.fields');
 
             foreach ($offers as $offer){
-                $offersBuilder = new ApiOfferBuilder($offer, $apiFields);
+                $offersBuilder = new AffiseOfferBuilder($offer, $apiFields);
                 
                 $offersInfo[] = [
                     'source_id' => 1,

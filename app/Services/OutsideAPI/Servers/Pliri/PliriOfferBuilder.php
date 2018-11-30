@@ -1,12 +1,9 @@
 <?php
 
-namespace App\Services\OutsideAPI\Servers;
+namespace App\Services\OutsideAPI\Servers\Pliri;
 
-class ApiOfferBuilder
+class PliriOfferBuilder
 {
-    /** @var int */
-    public $id;
-
     /** @var string */
     public $offer_id;
 
@@ -35,7 +32,6 @@ class ApiOfferBuilder
 
         $this->apiFields = $fields;
 
-        $this->id = $this->getOfferField('id');
         $this->offer_id = $this->getOfferField('offer_id');
         $this->country = $this->getOfferField('country');
         $this->currency = $this->getOfferField('currency');
