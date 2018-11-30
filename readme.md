@@ -1,21 +1,30 @@
-# Lumen PHP Framework
+# Задание
+-  Реализовать подключение к 2 API и агрегацию данных в БД(MySQL)
+-  Построить RESTful API Вашей системы для получения сохранённых данных в БД
+   - получение ID офферов (с выборкой по status, country, currency, advertiser, OS)
+   - получения детальной информации об оффере
+-  Использование PHP фреймворков на Ваше усмотрение
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://poser.pugx.org/laravel/lumen-framework/d/total.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/lumen-framework/v/stable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/lumen-framework/v/unstable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://poser.pugx.org/laravel/lumen-framework/license.svg)](https://packagist.org/packages/laravel/lumen-framework)
+# Описание
+Был использован фреймворк lumen. Дамп БД находится в корне проекта - `pliri-task-dump.sql`. Для тестирования
+работоспособности системы можно воспользоваться докером, если он установлен.
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+# Запуск проекта
+1. Выкачать проект с помощью `git`
+```
+cd /path/to/project
+git clone https://github.com/lutdev/api-techtask.git
+```
+2. Запустить докер контейнеры
+```
+cd docker && docker-compose up -d --build
+```
+3. После инициализации и запуска контейнеров система будет доступна по урлу `http://localhost:8033`
+4. В `.env` файлы указать `API_AFFISE_TOKEN` и `API_PLIRI_TOKEN`
 
-## Official Documentation
-
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# Доступные URL
+1. Страницы `http://localhost:8033/affise` и `http://localhost:8033/pliri` выкачивают данные с соответствующих API. Если 
+таблица `offers` пустая в БД, она будет заполнена.
+2. `GET``http://localhost:8033/api/offers` вернёт список все ID офферов. Роут поддерживает выборку по `status`, `country`,
+ `currency`, `advertiser`, `os`. Например, `http://localhost:8033/api/offers?status=active`.
+3. `GET` `http://localhost:8033/api/offers/{OFFER_ID}` вернёт информацию по оферу.

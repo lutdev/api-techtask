@@ -3,7 +3,7 @@ set -x
 
 if [ ! -f "/var/www/.env" ];
 then
-    composer create-project && php artisan jwt:secret;
+    cp /var/www/.env.example .env;
 else
     composer install;
 fi
